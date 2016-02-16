@@ -1,0 +1,11 @@
+---
+packages: []
+jobs:
+- name: say-hello
+  version: 1e93bd413ebb9bae0618026a63af0cb8a1579b43
+  fingerprint: 1e93bd413ebb9bae0618026a63af0cb8a1579b43
+  sha1: 161dbddfba38adfc3159cce2ca46ddccc4b13bfa
+commit_hash: '00000000'
+uncommitted_changes: false
+name: hello-world-windows
+version: 0+dev.4
