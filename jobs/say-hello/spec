@@ -4,5 +4,6 @@ description: "This is a simple errand"
 templates:
   run.erb: bin/run.ps1
   start.ps1: bin/start.ps1
+  start2.ps1: bin/start2.ps1
 
 packages:

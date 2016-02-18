@@ -46,7 +46,6 @@ update:
 
 jobs:
 - name: say-hello
-  lifecycle: errand
   templates:
   - name: say-hello
   instances: 1

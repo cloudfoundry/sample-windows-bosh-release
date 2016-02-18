@@ -4,6 +4,11 @@
       "name": "say-hello",
       "executable": "powershell",
       "args": [ "/var/vcap/jobs/say-hello/bin/start.ps1" ]
+    },
+    {
+      "name": "say-hello-2",
+      "executable": "powershell",
+      "args": [ "/var/vcap/jobs/say-hello/bin/start2.ps1" ]
     }
   ]
 }
