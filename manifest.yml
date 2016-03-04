@@ -1,6 +1,6 @@
 ---
 name: hello-world-windows-deployment
-director_uuid: b046b246-abf6-47ef-a50b-a26b110baa73
+director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
 
 releases:
 - name: hello-world-windows
