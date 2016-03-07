@@ -12,7 +12,6 @@ networks:
   - range: 172.16.1.0/24
     gateway: 172.16.1.1
     reserved: [172.16.1.1]
-    static: [172.16.1.2]
     dns: [172.16.1.1]
     cloud_properties:
       name: "VM Network"
@@ -52,6 +51,12 @@ jobs:
   resource_pool: default
   networks:
   - name: default
-    static_ips:
-    - 172.16.1.2
-  properties: {}
+
+- name: errand
+  lifecycle: errand
+  templates:
+  - name: say-hello
+  instances: 1
+  resource_pool: default
+  networks:
+  - name: default
