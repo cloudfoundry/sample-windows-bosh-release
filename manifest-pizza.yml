@@ -1,20 +1,20 @@
 ---
 name: hello-world-windows-deployment
-director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
+director_uuid: f885319a-d429-4995-9210-364a4ccb934d
 
 releases:
 - name: hello-world-windows
-  version: latest
+  version: 0+dev.3
 
 networks:
 - name: default
   subnets:
-  - range: 172.16.1.0/24
-    gateway: 172.16.1.1
-    reserved: [172.16.1.1]
-    dns: [172.16.1.1]
+  - range: 10.87.23.0/24
+    gateway: 10.87.23.1
+    reserved: [10.87.23.1]
+    dns: [10.87.23.1]
     cloud_properties:
-      name: "VM Network"
+      name: "stonetalon"
 
 resource_pools:
 - name: default
@@ -26,7 +26,6 @@ resource_pools:
     cpu: 2
     ram: 2_048
     disk: 2_048
-
 
 compilation:
   workers: 2
