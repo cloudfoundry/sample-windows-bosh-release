@@ -4,7 +4,7 @@ director_uuid: f885319a-d429-4995-9210-364a4ccb934d
 
 releases:
 - name: hello-world-windows
-  version: 0+dev.3
+  version: latest
 
 networks:
 - name: default
