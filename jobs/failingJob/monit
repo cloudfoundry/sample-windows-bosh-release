@@ -1,0 +1,9 @@
+{
+  "processes": [
+    {
+      "name": "failingJob1",
+      "executable": "powershell",
+      "args": [ "/var/vcap/jobs/failingJob/bin/start.ps1" ]
+    }
+  ]
+}
