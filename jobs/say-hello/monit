@@ -8,7 +8,10 @@
     {
       "name": "say-hello-2",
       "executable": "powershell",
-      "args": [ "/var/vcap/jobs/say-hello/bin/start2.ps1" ]
+      "args": [ "/var/vcap/jobs/say-hello/bin/start2.ps1" ],
+      "env": {
+        "MyEnvVar1": "myvalue"
+      }
     }
   ]
 }
