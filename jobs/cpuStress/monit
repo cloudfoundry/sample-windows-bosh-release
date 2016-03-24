@@ -1,0 +1,9 @@
+{
+  "processes": [
+    {
+      "name": "cpuStress1",
+      "executable": "powershell",
+      "args": [ "/var/vcap/jobs/cpuStress/bin/start.ps1" ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+---
+name: cpuStress
+description: "This is a job that will run a single CPU core at 100%"
+templates:
+  run.erb: bin/run.ps1
+  start.ps1: bin/start.ps1
+
+packages:

@@ -53,6 +53,22 @@ jobs:
   networks:
   - name: default
 
+# - name: failingJob
+#   templates:
+#   - name: failingJob
+#   instances: 1
+#   resource_pool: default
+#   networks:
+#   - name: default
+
+# - name: cpuStress
+#   templates:
+#   - name: cpuStress
+#   instances: 1
+#   resource_pool: default
+#   networks:
+#   - name: default
+
 - name: errand
   lifecycle: errand
   templates:
