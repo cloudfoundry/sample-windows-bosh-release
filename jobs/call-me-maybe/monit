@@ -1,0 +1,10 @@
+{
+  "processes": [
+    {
+      "name": "call-me-maybe",
+      "executable": "powershell",
+      "args": ["C:\\var\\vcap\\jobs\\call-me-maybe\\bin\\start.ps1"]
+    }
+  ]
+}
+

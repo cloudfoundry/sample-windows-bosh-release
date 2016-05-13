@@ -1,10 +1,10 @@
 ---
-name: hello-world-windows-deployment
-director_uuid: b046b246-abf6-47ef-a50b-a26b110baa73
+name: call-me-maybe
+director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
 
 releases:
 - name: hello-world-windows
-  version: 0+dev.3
+  version: latest
 
 networks:
 - name: default
@@ -13,6 +13,7 @@ networks:
     gateway: 172.16.1.1
     reserved: [172.16.1.1]
     dns: [172.16.1.1]
+    static: [172.16.1.2, 172.16.1.3, 172.16.1.4]
     cloud_properties:
       name: "VM Network"
 
@@ -27,9 +28,8 @@ resource_pools:
     ram: 2_048
     disk: 2_048
 
-
 compilation:
-  workers: 2
+  workers: 1
   network: default
   resource_pool: default
   cloud_properties:
@@ -44,19 +44,39 @@ update:
   max_in_flight: 2
 
 jobs:
-- name: say-hello
+- name: ping-1
   templates:
-  - name: say-hello
+  - name: call-me-maybe
   instances: 1
   resource_pool: default
   networks:
   - name: default
-
-- name: errand
-  lifecycle: errand
+    static_ips: [172.16.1.2]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://172.16.1.3:8080/ping'
+      server-address: ':8080'
+- name: ping-2
   templates:
-  - name: say-hello
+  - name: call-me-maybe
   instances: 1
   resource_pool: default
   networks:
   - name: default
+    static_ips: [172.16.1.3]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://172.16.1.2:8080/ping'
+      server-address: ':8080'
+- name: ping-3
+  templates:
+  - name: call-me-maybe
+  instances: 1
+  resource_pool: default
+  networks:
+  - name: default
+    static_ips: [172.16.1.4]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://172.16.1.3:8080/ping'
+      server-address: ':8080'

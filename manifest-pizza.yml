@@ -13,6 +13,7 @@ networks:
     gateway: 10.87.23.1
     reserved: [10.87.23.1, 10.87.23.2]
     dns: [10.87.23.1]
+    static: [10.87.23.3, 10.87.23.4, 10.87.23.5]
     cloud_properties:
       name: "stonetalon"
 
@@ -28,11 +29,11 @@ resource_pools:
     disk: 2_048
 
 compilation:
-  workers: 2
+  workers: 1
   network: default
   resource_pool: default
   cloud_properties:
-    cpu: 2
+    cpu: 1
     ram: 2_048
     disk: 2_048
 
@@ -43,19 +44,39 @@ update:
   max_in_flight: 2
 
 jobs:
-- name: say-hello
+- name: ping-1
   templates:
-  - name: say-hello
+  - name: call-me-maybe
   instances: 1
   resource_pool: default
   networks:
   - name: default
-
-- name: errand
-  lifecycle: errand
+    static_ips: [10.87.23.3]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://10.87.23.4:8080/ping'
+      server-address: ':8080'
+- name: ping-2
   templates:
-  - name: say-hello
+  - name: call-me-maybe
   instances: 1
   resource_pool: default
   networks:
   - name: default
+    static_ips: [10.87.23.4]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://10.87.23.3:8080/ping'
+      server-address: ':8080'
+- name: ping-3
+  templates:
+  - name: call-me-maybe
+  instances: 1
+  resource_pool: default
+  networks:
+  - name: default
+    static_ips: [10.87.23.5]
+  properties:
+    call-me-maybe:
+      remote-address: 'http://10.87.23.4:8080/ping'
+      server-address: ':8080'
