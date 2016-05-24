@@ -43,25 +43,25 @@ func main() {
 			Fatal(err)
 		}
 	}()
-	fmt.Printf("%s: listening on address: %s\n",
+	fmt.Printf("%s: listening on address: %s\r\n",
 		time.Now().Format(time.RFC3339), ServerAddress)
 
 	http.DefaultClient.Timeout = time.Second * 10
-	fmt.Printf("%s: client timeout set to: %s\n",
+	fmt.Printf("%s: client timeout set to: %s\r\n",
 		time.Now().Format(time.RFC3339), time.Second*10)
 
-	fmt.Printf("%s: pinging address: %s\n",
+	fmt.Printf("%s: pinging address: %s\r\n",
 		time.Now().Format(time.RFC3339), RemoteAddress)
 
 	ticker := time.NewTicker(time.Second * 1)
 	for _ = range ticker.C {
 		res, err := http.Get(RemoteAddress)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s: sending request (%s): %s\n",
+			fmt.Fprintf(os.Stderr, "%s: sending request (%s): %s\r\n",
 				time.Now().Format(time.RFC3339), RemoteAddress, err)
 			continue
 		}
-		fmt.Fprintf(os.Stdout, "%s: recieved status code (%s): %d\n",
+		fmt.Fprintf(os.Stdout, "%s: recieved status code (%s): %d\r\n",
 			time.Now().Format(time.RFC3339), RemoteAddress, res.StatusCode)
 		defer res.Body.Close()
 	}
@@ -71,10 +71,10 @@ func Fatal(err interface{}) {
 	if err != nil {
 		switch err.(type) {
 		case error, string:
-			fmt.Fprintf(os.Stderr, "%s: Error: %s\n",
+			fmt.Fprintf(os.Stderr, "%s: Error: %s\r\n",
 				time.Now().Format(time.RFC3339), err)
 		default:
-			fmt.Fprintf(os.Stderr, "%s: Error: %#v\n",
+			fmt.Fprintf(os.Stderr, "%s: Error: %#v\r\n",
 				time.Now().Format(time.RFC3339), err)
 		}
 	}
