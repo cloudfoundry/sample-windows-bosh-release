@@ -1,0 +1,60 @@
+---
+name: say-hello
+director_uuid: 738b11c1-619e-463f-b472-a786f1267d38
+
+releases:
+- name: hello-world-windows
+  version: latest
+
+networks:
+- name: default
+  subnets:
+  - cloud_properties:
+      security_groups:
+      - greenhouse-lion-InternalSecurityGroup-1NEXBCEUQSGH3
+      subnet: subnet-03091f75
+    dns:
+    - 10.10.0.2
+    gateway: 10.10.101.1
+    range: 10.10.101.0/24
+    reserved:
+    - 10.10.101.2 - 10.10.101.9
+    static:
+    - 10.10.101.10 - 10.10.101.70
+    - 10.10.101.90
+  type: manual
+
+resource_pools:
+- cloud_properties:
+    availability_zone: us-east-1a
+    instance_type: m3.xlarge
+  name: windows
+  network: default
+  stemcell:
+    name: bosh-aws-xen-hvm-windows-stemcell-go_agent
+    version: latest
+
+compilation:
+  workers: 1
+  network: default
+  resource_pool: windows
+  cloud_properties:
+    cpu: 2
+    ram: 2_048
+    disk: 2_048
+
+update:
+  canaries: 0
+  canary_watch_time: 60000
+  update_watch_time: 60000
+  max_in_flight: 2
+
+jobs:
+- name: say-hello
+  templates:
+  - name: say-hello
+  instances: 1
+  resource_pool: windows
+  networks:
+  - name: default
+    static: 10.10.101.90

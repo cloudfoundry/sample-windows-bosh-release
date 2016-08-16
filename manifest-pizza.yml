@@ -1,6 +1,6 @@
 ---
-name: hello-world-windows-deployment
-director_uuid: da12b3a5-a060-427c-a60c-9fd0c7643a3c
+name: say-hello
+director_uuid: 66bf0aa2-6fa3-4551-aae8-dc83fa81c751
 
 releases:
 - name: hello-world-windows
@@ -11,9 +11,9 @@ networks:
   subnets:
   - range: 10.87.23.0/24
     gateway: 10.87.23.1
-    reserved: [10.87.23.1, 10.87.23.50-10.87.23.254]   #reserved ips are NOT used by this deployment, so they can be used for others
-        #this deployment will only use IPs up to .50
+    reserved: [10.87.23.1, 10.87.23.2]
     dns: [10.87.23.1]
+    static: [10.87.23.3, 10.87.23.4, 10.87.23.5]
     cloud_properties:
       name: "stonetalon"
 
@@ -29,11 +29,11 @@ resource_pools:
     disk: 2_048
 
 compilation:
-  workers: 2
+  workers: 1
   network: default
   resource_pool: default
   cloud_properties:
-    cpu: 2
+    cpu: 1
     ram: 2_048
     disk: 2_048
 
@@ -52,28 +52,4 @@ jobs:
   resource_pool: default
   networks:
   - name: default
-
-# - name: failingJob
-#   templates:
-#   - name: failingJob
-#   instances: 1
-#   resource_pool: default
-#   networks:
-#   - name: default
-
-# - name: cpuStress
-#   templates:
-#   - name: cpuStress
-#   instances: 1
-#   resource_pool: default
-#   networks:
-#   - name: default
-
-- name: errand
-  lifecycle: errand
-  templates:
-  - name: say-hello
-  instances: 1
-  resource_pool: default
-  networks:
-  - name: default
+    static_ips: [10.87.23.5]

@@ -3,14 +3,17 @@
     {
       "name": "say-hello",
       "executable": "powershell",
-      "args": [ "/var/vcap/jobs/say-hello/bin/start.ps1" ]
+      "args": [ "/var/vcap/jobs/say-hello/bin/start.ps1" ],
+      "env": {
+        "FOO_1": "BAR_1"
+      }
     },
     {
       "name": "say-hello-2",
       "executable": "powershell",
       "args": [ "/var/vcap/jobs/say-hello/bin/start2.ps1" ],
       "env": {
-        "MyEnvVar1": "myvalue"
+        "FOO_2": "BAR_2"
       }
     }
   ]

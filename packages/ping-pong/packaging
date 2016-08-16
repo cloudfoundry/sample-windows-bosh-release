@@ -1,0 +1,28 @@
+$pkg_name="ping-pong"
+$env:GOROOT="C:\var\vcap\packages\golang1.6-windows\go"
+$env:GOPATH="${PWD}\ping-pong"
+$env:PATH="${env:GOROOT}\bin;${env:PATH}"
+
+try {
+    $BOSH_INSTALL_TARGET = Resolve-Path $env:BOSH_INSTALL_TARGET
+} catch {
+    $Host.UI.WriteErrorLine($_.Exception.Message)
+    Exit 1
+}
+
+function CompileGo {
+    go build -o "${BOSH_INSTALL_TARGET}\${pkg_name}.exe" "${pkg_name}"
+    $?
+}
+
+try {
+    if (-Not (CompileGo)) {
+        $Host.UI.WriteErrorLine("Error compiling: ${pkg_path}")
+        Exit 1
+    }
+} catch {
+    $Host.UI.WriteErrorLine($_.Exception.Message)
+    Exit 1
+}
+
+Exit 0

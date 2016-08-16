@@ -1,0 +1,9 @@
+---
+name: ping-pong
+
+dependencies:
+  - golang1.6-windows
+
+files:
+  - ping-pong/**/*
+  # - ping-pong/ping-pong.zip
