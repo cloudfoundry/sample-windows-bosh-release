@@ -1,5 +1,5 @@
 ---
-name: call-me-maybe
+name: say-hello
 director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
 
 releases:
@@ -44,39 +44,11 @@ update:
   max_in_flight: 2
 
 jobs:
-- name: ping-1
+- name: say-hello
   templates:
-  - name: call-me-maybe
+  - name: say-hello
   instances: 1
   resource_pool: default
   networks:
   - name: default
     static_ips: [172.16.1.2]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://172.16.1.3:8080/ping'
-      server-address: ':8080'
-- name: ping-2
-  templates:
-  - name: call-me-maybe
-  instances: 1
-  resource_pool: default
-  networks:
-  - name: default
-    static_ips: [172.16.1.3]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://172.16.1.2:8080/ping'
-      server-address: ':8080'
-- name: ping-3
-  templates:
-  - name: call-me-maybe
-  instances: 1
-  resource_pool: default
-  networks:
-  - name: default
-    static_ips: [172.16.1.4]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://172.16.1.3:8080/ping'
-      server-address: ':8080'

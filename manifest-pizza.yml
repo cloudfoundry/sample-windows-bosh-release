@@ -1,6 +1,6 @@
 ---
-name: hello-world-windows-deployment
-director_uuid: da12b3a5-a060-427c-a60c-9fd0c7643a3c
+name: say-hello
+director_uuid: 66bf0aa2-6fa3-4551-aae8-dc83fa81c751
 
 releases:
 - name: hello-world-windows
@@ -44,39 +44,11 @@ update:
   max_in_flight: 2
 
 jobs:
-- name: ping-1
+- name: say-hello
   templates:
-  - name: call-me-maybe
-  instances: 1
-  resource_pool: default
-  networks:
-  - name: default
-    static_ips: [10.87.23.3]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://10.87.23.4:8080/ping'
-      server-address: ':8080'
-- name: ping-2
-  templates:
-  - name: call-me-maybe
-  instances: 1
-  resource_pool: default
-  networks:
-  - name: default
-    static_ips: [10.87.23.4]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://10.87.23.3:8080/ping'
-      server-address: ':8080'
-- name: ping-3
-  templates:
-  - name: call-me-maybe
+  - name: say-hello
   instances: 1
   resource_pool: default
   networks:
   - name: default
     static_ips: [10.87.23.5]
-  properties:
-    call-me-maybe:
-      remote-address: 'http://10.87.23.4:8080/ping'
-      server-address: ':8080'

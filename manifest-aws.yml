@@ -1,41 +1,42 @@
-name: consul-deployment
-director_uuid: 5b0a95ac-659c-4a8d-bb67-b39b1e197f76
+---
+name: say-hello
+director_uuid: 738b11c1-619e-463f-b472-a786f1267d38
 
 releases:
 - name: hello-world-windows
   version: latest
 
 networks:
-- name: diego1
+- name: default
   subnets:
   - cloud_properties:
       security_groups:
-      - greenhaus3-InternalSecurityGroup-EQ1RB2Y3W354
-      subnet: subnet-8a204ed3
+      - greenhouse-lion-InternalSecurityGroup-1NEXBCEUQSGH3
+      subnet: subnet-03091f75
     dns:
     - 10.10.0.2
-    gateway: 10.10.5.1
-    range: 10.10.5.0/24
+    gateway: 10.10.101.1
+    range: 10.10.101.0/24
     reserved:
-    - 10.10.5.2 - 10.10.5.9
+    - 10.10.101.2 - 10.10.101.9
     static:
-    - 10.10.5.10 - 10.10.5.63
-    - 10.10.5.68
-  type: dynamic
+    - 10.10.101.10 - 10.10.101.70
+    - 10.10.101.90
+  type: manual
 
 resource_pools:
 - cloud_properties:
     availability_zone: us-east-1a
-    instance_type: m3.large
+    instance_type: m3.xlarge
   name: windows
-  network: diego1
+  network: default
   stemcell:
-    name: bosh-aws-xen-hvm-windows-go_agent
+    name: bosh-aws-xen-hvm-windows-stemcell-go_agent
     version: latest
 
 compilation:
-  workers: 2
-  network: diego1
+  workers: 1
+  network: default
   resource_pool: windows
   cloud_properties:
     cpu: 2
@@ -55,5 +56,5 @@ jobs:
   instances: 1
   resource_pool: windows
   networks:
-  - name: diego1
-  # - static: 10.10.5.100
+  - name: default
+    static: 10.10.101.90
