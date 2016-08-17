@@ -31,7 +31,7 @@ resource_pools:
   name: windows
   network: default
   stemcell:
-    name: bosh-aws-xen-hvm-windows-stemcell-go_agent
+    os: windows2012R2
     version: latest
 
 compilation:
@@ -51,6 +51,7 @@ update:
 
 jobs:
 - name: say-hello
+  release: hello-world-windows
   templates:
   - name: say-hello
   instances: 1
