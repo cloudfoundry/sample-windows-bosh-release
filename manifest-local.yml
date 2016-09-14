@@ -10,10 +10,10 @@ networks:
 - name: default
   subnets:
   - range: 172.16.1.0/24
-    gateway: 172.16.1.1
-    reserved: [172.16.1.1]
-    dns: [172.16.1.1]
-    static: [172.16.1.2, 172.16.1.3, 172.16.1.4]
+    gateway: 172.16.1.2
+    reserved: [172.16.1.2]
+    dns: [172.16.1.2]
+    static: [172.16.1.10]
     cloud_properties:
       name: "VM Network"
 
@@ -41,7 +41,7 @@ update:
   canaries: 0
   canary_watch_time: 60000
   update_watch_time: 60000
-  max_in_flight: 2
+  max_in_flight: 1
 
 jobs:
 - name: say-hello
@@ -51,4 +51,4 @@ jobs:
   resource_pool: default
   networks:
   - name: default
-    static_ips: [172.16.1.2]
+    static_ips: [172.16.1.10]

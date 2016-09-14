@@ -32,16 +32,15 @@ resource_pools:
   network: default
   stemcell:
     os: windows2012R2
-    version: latest
+    version: 0+dev
 
 compilation:
   workers: 1
   network: default
   resource_pool: windows
   cloud_properties:
-    cpu: 2
-    ram: 2_048
-    disk: 2_048
+    availability_zone: us-east-1a
+    instance_type: m3.xlarge
 
 update:
   canaries: 0
