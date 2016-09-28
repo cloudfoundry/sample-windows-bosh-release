@@ -1,10 +1,7 @@
 ---
 name: say-hello
-description: "This is a simple errand"
+description: "This is a simple job"
 templates:
-  run.erb: bin/run.ps1
   start.ps1: bin/start.ps1
-  start2.ps1: bin/start2.ps1
-  pre-start.ps1: bin/pre-start.ps1
 
 packages:

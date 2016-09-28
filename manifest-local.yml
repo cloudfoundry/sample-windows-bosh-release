@@ -3,7 +3,7 @@ name: say-hello
 director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
 
 releases:
-- name: hello-world-windows
+- name: say-hello
   version: latest
 
 networks:

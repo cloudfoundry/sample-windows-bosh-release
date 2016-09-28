@@ -1,9 +1,9 @@
 ---
 name: say-hello
-director_uuid: 738b11c1-619e-463f-b472-a786f1267d38
+director_uuid: c8a0cccd-6acc-42ed-a98d-d5b83f0bbcd7
 
 releases:
-- name: hello-world-windows
+- name: say-hello
   version: latest
 
 networks:
@@ -18,9 +18,8 @@ networks:
     gateway: 10.10.101.1
     range: 10.10.101.0/24
     reserved:
-    - 10.10.101.2 - 10.10.101.9
+    - 10.10.101.2 - 10.10.101.10
     static:
-    - 10.10.101.10 - 10.10.101.70
     - 10.10.101.90
   type: manual
 
@@ -28,6 +27,7 @@ resource_pools:
 - cloud_properties:
     availability_zone: us-east-1a
     instance_type: m3.xlarge
+  size: 4
   name: windows
   network: default
   stemcell:
@@ -46,13 +46,13 @@ update:
   canaries: 0
   canary_watch_time: 60000
   update_watch_time: 60000
-  max_in_flight: 2
+  max_in_flight: 4
 
 jobs:
-- name: say-hello
-  release: hello-world-windows
+- name: cck-test
+  release: say-hello
   templates:
-  - name: say-hello
+  - name: install-windows-features
   instances: 1
   resource_pool: windows
   networks:
