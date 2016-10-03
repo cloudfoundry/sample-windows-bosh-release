@@ -2,7 +2,6 @@
 name: install-windows-features
 description: "Repo for an error around installing Windows features required by Garden-Windows on AWS"
 templates:
-  run.erb: bin/run.ps1
   start.ps1: bin/start.ps1
   pre-start.ps1: bin/pre-start.ps1
 

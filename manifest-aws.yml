@@ -3,7 +3,7 @@ name: say-hello
 director_uuid: c8a0cccd-6acc-42ed-a98d-d5b83f0bbcd7
 
 releases:
-- name: say-hello
+- name: sample-windows-release
   version: latest
 
 networks:
@@ -50,7 +50,7 @@ update:
 
 jobs:
 - name: cck-test
-  release: say-hello
+  release: sample-windows-release
   templates:
   - name: install-windows-features
   instances: 1
