@@ -2,6 +2,6 @@
 name: say-hello
 description: "This is a simple job"
 templates:
-  start.ps1: bin/start.ps1
+  run.ps1: bin/run.ps1
 
 packages:
