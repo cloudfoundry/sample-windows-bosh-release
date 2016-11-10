@@ -1,4 +1,4 @@
-$path="golang/go1.6.2.windows-amd64.zip"
+$path="golang/go1.7.3.windows-amd64.zip"
 
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 function Unzip
@@ -14,7 +14,8 @@ try
 }
 catch
 {
-    $Host.UI.WriteErrorLine($_.Exception.Message)
+    Write-Error "Error installing golang: ${path}"
+    Write-Error $_.Exception.Message
     Exit 1
 }
 Exit 0

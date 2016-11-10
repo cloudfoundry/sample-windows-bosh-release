@@ -1,60 +1,57 @@
 ---
-name: say-hello
+name: turbulence-windows
 director_uuid: c8a0cccd-6acc-42ed-a98d-d5b83f0bbcd7
 
 releases:
+- name: turbulence
+  version: latest
 - name: sample-windows-release
   version: latest
+- name: hello-world-linux
+  version: latest
 
-networks:
-- name: default
-  subnets:
-  - cloud_properties:
-      security_groups:
-      - greenhouse-lion-InternalSecurityGroup-1NEXBCEUQSGH3
-      subnet: subnet-03091f75
-    dns:
-    - 10.10.0.2
-    gateway: 10.10.101.1
-    range: 10.10.101.0/24
-    reserved:
-    - 10.10.101.2 - 10.10.101.10
-    static:
-    - 10.10.101.90
-  type: manual
+stemcells:
+- alias: windows
+  os: windows2012R2
+  version: latest
+- alias: default
+  os: ubuntu-trusty
+  version: latest
 
-resource_pools:
-- cloud_properties:
-    availability_zone: us-east-1a
-    instance_type: m3.xlarge
-  size: 4
-  name: windows
-  network: default
-  stemcell:
-    os: windows2012R2
-    version: 0+dev
-
-compilation:
-  workers: 1
-  network: default
-  resource_pool: windows
-  cloud_properties:
-    availability_zone: us-east-1a
-    instance_type: m3.xlarge
+instance_groups:
+- name: agent-windows
+  instances: 1
+  azs: [z1]
+  jobs:
+  - name: say-hello
+    release: sample-windows-release
+  - name: turbulence_agent_windows
+    release: turbulence
+    consumes:
+      api: {from: api, deployment: turbulence}
+  vm_type: xlarge
+  stemcell: windows
+  networks:
+  - name: windows
+    static_ips: [10.10.101.74]
+- name: agent-linux
+  instances: 1
+  azs: [z1]
+  jobs:
+  - name: say-hello
+    release: hello-world-linux
+  - name: turbulence_agent
+    release: turbulence
+    consumes:
+      api: {from: api, deployment: turbulence}
+  vm_type: default
+  stemcell: default
+  networks:
+  - name: windows
+    static_ips: [10.10.101.75]
 
 update:
-  canaries: 0
-  canary_watch_time: 60000
-  update_watch_time: 60000
-  max_in_flight: 4
-
-jobs:
-- name: cck-test
-  release: sample-windows-release
-  templates:
-  - name: install-windows-features
-  instances: 1
-  resource_pool: windows
-  networks:
-  - name: default
-    static: 10.10.101.90
+  canaries: 1
+  max_in_flight: 1
+  canary_watch_time: 5000-20000
+  update_watch_time: 5000-20000
