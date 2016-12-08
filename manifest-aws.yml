@@ -1,9 +1,9 @@
 ---
-name: say-hello
-director_uuid: c8a0cccd-6acc-42ed-a98d-d5b83f0bbcd7
+name: bad-package
+director_uuid: 500fc517-096c-4f0f-8422-7cf3dcbfef2d
 
 releases:
-- name: say-hello
+- name: sample-windows-release
   version: latest
 
 networks:
@@ -27,12 +27,12 @@ resource_pools:
 - cloud_properties:
     availability_zone: us-east-1a
     instance_type: m3.xlarge
-  size: 4
+  size: 1
   name: windows
   network: default
   stemcell:
     os: windows2012R2
-    version: 0+dev
+    version: latest
 
 compilation:
   workers: 1
@@ -49,12 +49,22 @@ update:
   max_in_flight: 4
 
 jobs:
-- name: cck-test
-  release: say-hello
+- name: bad-package-job
   templates:
-  - name: install-windows-features
+  - name: call-me-maybe
   instances: 1
   resource_pool: windows
   networks:
   - name: default
     static: 10.10.101.90
+
+# jobs:
+# - name: cck-test
+#   release: say-hello
+#   templates:
+#   - name: install-windows-features
+#   instances: 1
+#   resource_pool: windows
+#   networks:
+#   - name: default
+#     static: 10.10.101.90

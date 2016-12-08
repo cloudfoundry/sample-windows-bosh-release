@@ -1,0 +1,30 @@
+---
+name: say-hello
+director_uuid: f774c0ca-8549-44af-b25c-5d1f6f0fc057
+releases:
+- name: say-hello
+  version: latest
+stemcells:
+- alias: windows
+  os: windows2012R2
+  version: latest
+update:
+  canaries: 1
+  canary_watch_time: 30000-300000
+  update_watch_time: 30000-300000
+  max_in_flight: 1
+  max_errors: 2
+  serial: false
+instance_groups:
+- name: hello
+  stemcell: windows
+  vm_type: large
+  azs:
+  - default
+  networks:
+  - name: default
+  jobs:
+  - name: say-hello
+    release: say-hello
+  instances: 1
+  lifecycle: service

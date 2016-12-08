@@ -1,9 +1,9 @@
 ---
 name: say-hello
-director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
+director_uuid: ca40b6cf-f195-40c2-9d56-8cd5888e73f4
 
 releases:
-- name: say-hello
+- name: sample-windows-release
   version: latest
 
 networks:
@@ -11,9 +11,9 @@ networks:
   subnets:
   - range: 172.16.1.0/24
     gateway: 172.16.1.2
-    reserved: [172.16.1.2]
+    reserved: [172.16.1.1-172.16.1.4]
     dns: [172.16.1.2]
-    static: [172.16.1.10]
+    static: [172.16.1.10, 172.16.1.11]
     cloud_properties:
       name: "VM Network"
 
