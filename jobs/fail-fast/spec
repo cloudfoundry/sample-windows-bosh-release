@@ -1,0 +1,12 @@
+---
+name: fail-fast
+templates:
+  start.ps1.erb: bin/start.ps1
+
+packages:
+  - fail-fast
+
+properties:
+  fail-fast.wait-duration:
+    description: "Time to wait before exiting"
+    default: "1.5s"

@@ -1,0 +1,8 @@
+---
+name: fail-fast
+
+dependencies:
+  - golang-windows
+
+files:
+  - fail-fast/**/*

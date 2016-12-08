@@ -1,0 +1,19 @@
+$pkg_name="fail-fast"
+$env:GOROOT="C:\var\vcap\packages\golang-windows\go"
+$env:GOPATH="${PWD}\${pkg_name}"
+$env:PATH="${env:GOROOT}\bin;${env:PATH}"
+
+try {
+    $BOSH_INSTALL_TARGET = Resolve-Path $env:BOSH_INSTALL_TARGET
+
+    go build -o "${BOSH_INSTALL_TARGET}\${pkg_name}.exe" "${pkg_name}"
+    if ($LASTEXITCODE -ne 0) {
+        Write-Error "Error compiling: ${pkg_path}"
+        Exit 1
+    }
+} catch {
+    Write-Error $_.Exception.Message
+    Exit 1
+}
+
+Exit 0

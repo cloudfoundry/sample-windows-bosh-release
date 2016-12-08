@@ -1,0 +1,9 @@
+{
+  "processes": [
+    {
+      "name": "fail-fast",
+      "executable": "powershell",
+      "args": ["C:\\var\\vcap\\jobs\\fail-fast\\bin\\start.ps1"]
+    }
+  ]
+}
