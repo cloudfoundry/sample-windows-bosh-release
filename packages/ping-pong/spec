@@ -2,7 +2,7 @@
 name: ping-pong
 
 dependencies:
-  - golang1.6-windows
+  - golang-windows
 
 files:
   - ping-pong/**/*
