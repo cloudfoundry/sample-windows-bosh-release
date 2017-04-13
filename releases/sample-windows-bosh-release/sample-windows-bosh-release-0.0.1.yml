@@ -1,0 +1,37 @@
+name: sample-windows-bosh-release
+version: 0.0.1
+commit_hash: 6da6786
+uncommitted_changes: false
+jobs:
+- name: call-me-maybe
+  version: 9d828b0259df436e7bb0c2dec4b1ed95d775c54c
+  fingerprint: 9d828b0259df436e7bb0c2dec4b1ed95d775c54c
+  sha1: 9152289a0e31d7dc58cf77bb0027114375a0732b
+- name: cpuStress
+  version: 51bf50eb6985afa9b1b9605141764ce58670f5f6
+  fingerprint: 51bf50eb6985afa9b1b9605141764ce58670f5f6
+  sha1: d4577a40f12f6057687336d07a0b71669ed289dd
+- name: failingJob
+  version: 6a915568ac558d2293288628e63dcdaf6a51d8dc
+  fingerprint: 6a915568ac558d2293288628e63dcdaf6a51d8dc
+  sha1: 6131901bc76ed29e0796bbf98c3e2d133bdb565a
+- name: install-windows-features
+  version: 5849087770036ddeec3da6759e99f985d2b592a5
+  fingerprint: 5849087770036ddeec3da6759e99f985d2b592a5
+  sha1: 550230066b76a7941ac4134e2c92617de5d726c1
+- name: say-hello
+  version: 3055c22b9591d9d001cac08c004393443050d9aa
+  fingerprint: 3055c22b9591d9d001cac08c004393443050d9aa
+  sha1: cf2f59273ae0ff840cab5771c35a60936e90a304
+packages:
+- name: golang-windows
+  version: b0c8506be98b8eeda19b1b34e56a9e515d1053fa
+  fingerprint: b0c8506be98b8eeda19b1b34e56a9e515d1053fa
+  sha1: 6f4aab41b719f9b2a5e02636540a7ab7b904b742
+  dependencies: []
+- name: ping-pong
+  version: 5ecbc5132fd0f6b54730ecf51b4fb4cae3af1be5
+  fingerprint: 5ecbc5132fd0f6b54730ecf51b4fb4cae3af1be5
+  sha1: 63d16ea427ec05693d1dc94a5f552dc58fea7122
+  dependencies:
+  - golang-windows
