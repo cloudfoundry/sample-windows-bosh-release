@@ -1,9 +1,9 @@
 ---
 name: say-hello
-director_uuid: 8b3d34c7-6262-4c1e-97df-c02105090d2f
+director_uuid: REPLACE_ME
 
 releases:
-- name: say-hello
+- name: sample-windows-release
   version: latest
 
 networks:
@@ -13,20 +13,20 @@ networks:
     gateway: 172.16.1.2
     reserved: [172.16.1.2]
     dns: [172.16.1.2]
-    static: [172.16.1.10]
+    static: [172.16.1.10-172.16.1.20]
     cloud_properties:
       name: "VM Network"
 
 resource_pools:
 - name: default
   stemcell:
-    name: bosh-vsphere-esxi-windows-2012R2-go_agent
+    name: bosh-vsphere-esxi-windows2012R2-go_agent
     version: latest
   network: default
   cloud_properties:
     cpu: 2
-    ram: 2_048
-    disk: 2_048
+    ram: 2_084
+    disk: 2_084
 
 compilation:
   workers: 1
@@ -34,8 +34,8 @@ compilation:
   resource_pool: default
   cloud_properties:
     cpu: 2
-    ram: 2_048
-    disk: 2_048
+    ram: 2_084
+    disk: 2_084
 
 update:
   canaries: 0
@@ -45,10 +45,11 @@ update:
 
 jobs:
 - name: say-hello
+  release: sample-windows-release
   templates:
   - name: say-hello
   instances: 1
   resource_pool: default
   networks:
   - name: default
-    static_ips: [172.16.1.10]
+    static_ips: [172.16.1.11]
