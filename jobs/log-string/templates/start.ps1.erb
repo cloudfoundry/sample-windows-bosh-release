@@ -1,0 +1,8 @@
+$LogFile = "C:/var/vcap/sys/log/log-string/stdout.log"
+$LogString = "<%= p("log-string.random_string") %>"
+
+while ($true)
+{
+  $LogString | Out-File $LogFile -Append -Encoding ASCII
+	Start-Sleep 1.0
+}

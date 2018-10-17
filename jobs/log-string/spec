@@ -1,0 +1,11 @@
+---
+name: log-string
+description: "This is a simple job that logs user-defined string"
+templates:
+  start.ps1.erb: bin/start.ps1
+
+packages:
+
+properties:
+  log-string.random_string:
+    description: 'A user selected random string that will be logged'

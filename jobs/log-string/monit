@@ -1,0 +1,12 @@
+{
+  "processes": [
+    {
+      "name": "log-string",
+      "executable": "powershell",
+      "args": [ "/var/vcap/jobs/log-string/bin/start.ps1" ],
+      "env": {
+        "FOO_1": "BAR_1"
+      }
+    }
+  ]
+}
